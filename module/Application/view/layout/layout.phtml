@@ -20,36 +20,49 @@
   </head>
 
   <body>
+    <div class="wrapper">
+        <div class="header-container">
+			<div class="header">
+                <div class="navbar navbar-fixed-top">
+                  <div class="navbar-inner">
+                    <div class="container">
+                      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </a>
+                      <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Skeleton Application') ?></a>
+                      <div class="nav-collapse">
+                        <ul class="nav">
+                          <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
+                          <li class="active"><a href="<?php echo $this->url('album',array('action'=>'detail')) ?>"><?php echo $this->translate('Detail') ?></a></li>
+                          <li class="active"><a href="<?php echo $this->url('album',array('action'=>'artist')) ?>"><?php echo $this->translate('Artist') ?></a></li>
+                        </ul>
+                      </div><!--/.nav-collapse -->
+                    </div>
+                  </div>
+                </div>
+            </div>
+		</div>
 
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Skeleton Application') ?></a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
+        <div class="container col2-layout">
+            <div class="main">
+                    <?php echo $this->content; ?>
+			</div>
+        </div> <!-- /container -->
+        <div class="footer-container">
+			<div class="footer">footer</div>
+		</div>
     </div>
-
-    <div class="container">
-
-      <?php echo $this->content; ?>
-
-      <hr>
-
-      <footer>
-      </footer>
-
-    </div> <!-- /container -->
 
   </body>
 </html>
+<script type="text/javascript">
+    // $(document).ready(function(){
+    //         $('a').click(function() {
+    //                 var val = $(this).text();
+    //                 alert(val);
+    //         });
+    // });
+</script>

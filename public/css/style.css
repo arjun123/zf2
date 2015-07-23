@@ -4,7 +4,7 @@ body {
 }
 
 .zf-green {
-    color: #68b604; 
+    color: #68b604;
 }
 
 .btn-success {
@@ -35,3 +35,54 @@ div.container a.brand {
     margin-left: 0;
     padding: 8px 20px 12px 40px;
 }
+
+.wrap {
+   width:940px;
+   margin:0 auto;
+}
+/*.left_col {
+   float:left;
+   width:300px;
+}
+.right_col {
+   float:right;
+   width:300px;
+}
+.col2-l-left {
+    float: left;
+    width: 200px;
+}
+.right-wrap {
+    float: right;
+    width: 650px
+}*/
+.wrapper {
+    overflow:hidden;
+}
+.main-container{
+	margin:0 auto;
+	width:960px;
+}
+.main{
+	background:#fff;
+	min-height:700px;
+}
+.col-main{
+	padding:10px 20px;
+}
+/* Base Columns */
+.col-left { float:left; width:200px; padding:10px 0 0 10px; }
+.col-main { float:left; width:710px; padding:10px 20px; }
+.col-right { float:right; width:200px; padding:10px 10px 0 0;}
+
+/* 1 Column Layout */
+.col1-layout .col-main { float:none; width:auto; }
+
+/* 2 Columns Layout */
+.col2-left-layout .col-main { float:right; }
+.col2-right-layout .col-main {}
+
+/* 3 Columns Layout */
+.col3-layout .col-main { width:490px; }
+.col3-layout .col-wrapper { float:left; width:730px; }
+.col3-layout .col-wrapper .col-main { float:right; }

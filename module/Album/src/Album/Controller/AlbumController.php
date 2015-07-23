@@ -51,7 +51,7 @@ class AlbumController extends AbstractActionController
         $form = new AlbumForm();
         $form->bind($album);
         $form->get('submit')->setAttribute('value', 'Edit');
-        
+
         $request = $this->getRequest();
         if ($request->isPost()) {
             $form->setData($request->getPost());
@@ -94,6 +94,14 @@ class AlbumController extends AbstractActionController
         );
     }
 
+    public function detailAction()
+    {
+        return new ViewModel();
+    }
+    public function artistAction()
+    {
+        return new ViewModel();
+    }
     public function getAlbumTable()
     {
         if (!$this->albumTable) {
@@ -101,5 +109,5 @@ class AlbumController extends AbstractActionController
             $this->albumTable = $sm->get('Album\Model\AlbumTable');
         }
         return $this->albumTable;
-    }    
+    }
 }
