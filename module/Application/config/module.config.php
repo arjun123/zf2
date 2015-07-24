@@ -49,6 +49,16 @@ return array(
             'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
         ),
     ),
+    'rdn_console_commands' => array(
+        'invokables' => array(
+            'Application:HelloWorld' => 'Application\Console\Command\HelloWorld',
+        ),
+    ),
+    'rdn_console' => array(
+        'commands' => array(
+            'Application:HelloWorld',
+        ),
+    ),
     'translator' => array(
         'locale' => 'en_US',
         'translation_patterns' => array(
@@ -63,6 +73,26 @@ return array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController'
         ),
+    ),
+    'doctrine' => array(
+        'configuration' => array(
+            'orm_default' => array(
+                'proxy_dir' => 'data/DoctrineORMModule/Proxy',
+                'proxy_namespace' => 'DoctrineORMModule\Proxy',
+            )
+        ),
+        'driver' => array(
+            'application_entities' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/Application/Entity')
+            ),
+            'orm_default' => array(
+                'drivers' => array(
+                    'Application\Entity' => 'application_entities',
+                )
+            )
+        )
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,
