@@ -51,12 +51,14 @@ return array(
     ),
     'rdn_console_commands' => array(
         'invokables' => array(
-            'Application:HelloWorld' => 'Application\Console\Command\HelloWorld',
+            // 'Application:HelloWorld' => 'Application\Console\Command\HelloWorld',
+            'Application:Database' => 'Application\Console\Command\Database\Seed\Database',
         ),
     ),
     'rdn_console' => array(
         'commands' => array(
-            'Application:HelloWorld',
+            // 'Application:HelloWorld',
+            'Application:Database',
         ),
     ),
     'translator' => array(
