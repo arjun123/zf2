@@ -39,7 +39,7 @@ ServiceLocatorAwareInterface
             ->get('Album\Model\AlbumTable');
         $album = new Album();
 
-        $album->exchangeArray(array('artist' => 'Arjun', 'title' => 'Someone like you'));
+        $album->exchangeArray(array('id' => 1,'artist' => 'Arjun', 'title' => 'Someone like you'));
         $em->saveAlbum($album);
 
         $output->writeln('Hello world!');

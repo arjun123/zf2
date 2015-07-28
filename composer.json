@@ -11,6 +11,7 @@
         "php": ">=5.3.3",
         "zendframework/zendframework": "~2.5.",
         "radnan/rdn-console": "1.*",
-        "doctrine/doctrine-orm-module": "^0.9.1"
+        "doctrine/doctrine-orm-module": "^0.9.1",
+        "symfony/filesystem": "~2.4"
     }
 }

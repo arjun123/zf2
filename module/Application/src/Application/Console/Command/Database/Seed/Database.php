@@ -6,20 +6,37 @@ use RdnConsole\Command\AbstractCommand;
 use RdnConsole\Command\ConfigurableInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Filesystem\Filesystem;
+
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+
 use Album\Model\Album;
 
 class Database extends AbstractCommand implements ConfigurableInterface,
 ServiceLocatorAwareInterface
 {
     protected $servicelocator;
+    protected $filesystem;
 
     public function configure()
     {
         $this->adapter
             ->setName('application:seed')
             ->setDescription('Seed the database with record')
+            ->addArgument(
+                'name',
+                InputArgument::OPTIONAL,
+                'Who do you want to greet?'
+            )
+            ->addOption(
+               'yell',
+               null,
+               InputOption::VALUE_NONE,
+               'If set, the task will yell in uppercase letters'
+            )
         ;
     }
     protected $serviceLocator;
@@ -36,10 +53,26 @@ ServiceLocatorAwareInterface
     public function execute(InputInterface $input, OutputInterface $output)
     {
         try {
-            $this->AlbunTableSeed();
-            $output->writeln('Success');
+            $name = $input->getArgument('name');
+
+            if ($name) {
+                $em = $this->getServiceLocator()->getServiceLocator()
+                    ->get('Album\Model\AlbumTable');
+                    $em->getAdapter()->getDriver()->getConnection()->beginTransaction();
+                    $em->getAdapter()->getDriver()->getConnection()->rollback();
+                $output->writeln('<info>Rollback Successfully</info>');
+            } else {
+                // $text = 'Hello';
+                // $this->AlbunTableSeed();
+                // $output->writeln('<info>Success</info>');
+                $path = ''
+                $filesystem = new \Filesystem();
+                $filesystem->dumpFile($path, $license.PHP_EOL);
+
+                $output->writeln(sprintf('Created the file %s', $path));
+            }
         } catch (Exception $e) {
-            $output->writeln($e->getMessage());
+            $output->writeln('<error>'.$e->getMessage().'</error>');
         }
     }
 
@@ -65,16 +98,13 @@ ServiceLocatorAwareInterface
             $sql = 'Truncate table album';
             $em->getAdapter()->driver->getConnection()->execute($sql);
             if (count($dataSet) != count($dataSet, COUNT_RECURSIVE)) {
-                // echo "if";die;
                 foreach ($dataSet as $data) {
-                    // print_r($data);die;
                     $album = new Album();
 
                     $album->exchangeArray($data);
                     $em->saveAlbum($album);
                 }
             } else {
-                echo "lese";die;
                 $album = new Album();
 
                 $album->exchangeArray($dataSet);
