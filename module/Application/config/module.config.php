@@ -53,12 +53,14 @@ return array(
         'invokables' => array(
             'Application:HelloWorld' => 'Application\Console\Command\HelloWorld',
             'Application:Database' => 'Application\Console\Command\Database\Seed\Database',
+            'Application:GenerateClass' => 'Application\Console\Command\Generate\GenerateClass',
         ),
     ),
     'rdn_console' => array(
         'commands' => array(
             'Application:HelloWorld',
             'Application:Database',
+            'Application:GenerateClass',
         ),
     ),
     'translator' => array(

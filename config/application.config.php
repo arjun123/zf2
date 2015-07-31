@@ -3,6 +3,7 @@ return array(
     'modules' => array(
         'Application',
         'Album',
+        'Blog',
         'RdnConsole',
         'DoctrineModule',
         'DoctrineORMModule',

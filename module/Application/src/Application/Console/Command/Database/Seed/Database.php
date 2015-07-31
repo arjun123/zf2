@@ -65,9 +65,9 @@ ServiceLocatorAwareInterface
                 // $text = 'Hello';
                 // $this->AlbunTableSeed();
                 // $output->writeln('<info>Success</info>');
-                $path = ''
-                $filesystem = new \Filesystem();
-                $filesystem->dumpFile($path, $license.PHP_EOL);
+                // $path = ''
+                // $filesystem = new \Filesystem();
+                // $filesystem->dumpFile($path, $license.PHP_EOL);
 
                 $output->writeln(sprintf('Created the file %s', $path));
             }

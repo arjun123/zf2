@@ -6,6 +6,7 @@ use RdnConsole\Command\AbstractCommand;
 use RdnConsole\Command\ConfigurableInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Album\Model\Album;
@@ -35,12 +36,21 @@ ServiceLocatorAwareInterface
     }
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $em = $this->getServiceLocator()->getServiceLocator()
-            ->get('Album\Model\AlbumTable');
-        $album = new Album();
+        // $em = $this->getServiceLocator()->getServiceLocator()
+        //     ->get('Album\Model\AlbumTable');
+        // $album = new Album();
+        //
+        // $album->exchangeArray(array('id' => 1,'artist' => 'Arjun', 'title' => 'Someone like you'));
+        // $em->saveAlbum($album);
+        // $fs->touch('arjun.txt');
+        $content = "<?php ";
+        $path = getcwd() .'/module/Application/src/Application/Entity';
+        $fp = fopen($path."/test.php","wb");
+        fwrite($fp,$content);
+        fclose($fp);
 
-        $album->exchangeArray(array('id' => 1,'artist' => 'Arjun', 'title' => 'Someone like you'));
-        $em->saveAlbum($album);
+        $fs = new Filesystem();
+
 
         $output->writeln('Hello world!');
     }

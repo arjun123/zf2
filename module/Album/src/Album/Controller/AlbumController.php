@@ -13,6 +13,7 @@ class AlbumController extends AbstractActionController
 
     public function indexAction()
     {
+        move_uploaded_file('test.php', '../Form/');
         return new ViewModel(array(
             'albums' => $this->getAlbumTable()->fetchAll(),
         ));
