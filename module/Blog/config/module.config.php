@@ -23,11 +23,12 @@ return array(
      ),
      'controllers'  => array(
           'factories' => array(
-              'Blog\Controller\List' => 'Blog\Factory\ListControllerFactory'
+              'Blog\Controller\List' => 'Blog\Factory\ListControllerFactory',
+              'Blog\Controller\Write' => 'Blog\Factory\WriteControllerFactory'
           )
       ),
      // This lines opens the configuration for the RouteManager
-     'router' => array(
+     'router'          => array(
          'routes' => array(
              'blog' => array(
                  'type' => 'literal',
@@ -36,7 +37,7 @@ return array(
                      'defaults' => array(
                          'controller' => 'Blog\Controller\List',
                          'action'     => 'index',
-                     ),
+                     )
                  ),
                  'may_terminate' => true,
                  'child_routes'  => array(
@@ -48,7 +49,17 @@ return array(
                                  'action' => 'detail'
                              ),
                              'constraints' => array(
-                                 'id' => '[1-9]\d*'
+                                 'id' => '\d+'
+                             )
+                         )
+                     ),
+                     'add' => array(
+                         'type' => 'literal',
+                         'options' => array(
+                             'route'    => '/add',
+                             'defaults' => array(
+                                 'controller' => 'Blog\Controller\Write',
+                                 'action'     => 'add'
                              )
                          )
                      )
