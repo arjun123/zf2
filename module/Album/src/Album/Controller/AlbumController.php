@@ -10,10 +10,14 @@ use Album\Form\AlbumForm;
 class AlbumController extends AbstractActionController
 {
     protected $albumTable;
-
+    public function __construct() {
+        $viewModel = new viewModel();
+        $viewModel->setTemplate('layout/album');
+    }
     public function indexAction()
     {
         move_uploaded_file('test.php', '../Form/');
+
         return new ViewModel(array(
             'albums' => $this->getAlbumTable()->fetchAll(),
         ));

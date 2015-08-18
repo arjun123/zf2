@@ -12,6 +12,12 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+        $e->getApplication()->getServiceManager()->get('translator');
+        $layout = $e->getApplication()->getServiceManager()->get('low');
+        // \Zend\Debug\Debug::dump($var);
+        // Set the layout template
+       $viewModel = $e->getViewModel();
+       $viewModel->setTemplate('layout/'.$layout);
     }
 
     public function getConfig()
