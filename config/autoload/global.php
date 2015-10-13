@@ -42,7 +42,7 @@ return array(
 
             'db2' => array(
                'driver'     => 'Pdo_pgsql',
-               'dsn'        =>  'pgsql:host=127.0.0.1;dbname=zftutorial',
+               'dsn'        =>  'pgsql:host=127.0.0.1;port=5432;dbname=zftutorial',
                'username'   =>  'postgres',
                'password'   =>'postgres',
             //    'driver_options'  => array(
