@@ -6,6 +6,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Album\Model\Album;
 use Album\Form\AlbumForm;
+use Zend\Db\Sql\Sql;
 
 class AlbumController extends AbstractActionController
 {
@@ -101,10 +102,43 @@ class AlbumController extends AbstractActionController
 
     public function detailAction()
     {
+        //\Zend\Debug\Debug::dump($this->getServiceLocator()->get('db2'));
+        try {
+            $adapter = $this->getServiceLocator()->get('db2');
+            $sql = new Sql($adapter);
+            $insert = $sql->insert('company');
+            $newData = array(
+            'name'=> 'Arjun Sunar',
+            'age'=> 25,
+            'address'=> 'Pokhara',
+            'salary'=> 300,
+            // 'created_date'=> \date('Y-m-d'),
+            // 'created_time'=> \time()
+            );
+            $insert->values($newData);
+            $selectString = $sql->getSqlStringForSqlObject($insert);
+
+            $results = $adapter->query($selectString, $adapter::QUERY_MODE_EXECUTE);
+        } catch (Exception $e) {
+            echo $e->getMesssage();
+        }
         return new ViewModel();
     }
     public function artistAction()
     {
+        $adapter = $this->getServiceLocator()->get('db2');
+        $sql = new Sql($adapter);
+        $select = $sql->select();
+        $select->from('company');
+        // $select->where(array('id' => 2));
+
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $results = $statement->execute();
+echo "dfdf";
+        foreach ($results as $row) {
+
+            var_dump($row['name']);
+        }
         return new ViewModel();
     }
     public function getAlbumTable()
