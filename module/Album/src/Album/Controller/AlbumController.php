@@ -7,6 +7,7 @@ use Zend\View\Model\ViewModel;
 use Album\Model\Album;
 use Album\Form\AlbumForm;
 use Zend\Db\Sql\Sql;
+use Zend\Db\TableGateway\TableGateway;
 
 class AlbumController extends AbstractActionController
 {
@@ -105,20 +106,18 @@ class AlbumController extends AbstractActionController
         //\Zend\Debug\Debug::dump($this->getServiceLocator()->get('db2'));
         try {
             $adapter = $this->getServiceLocator()->get('db2');
-            $sql = new Sql($adapter);
-            $insert = $sql->insert('company');
-            $newData = array(
-            'name'=> 'Arjun Sunar',
-            'age'=> 25,
-            'address'=> 'Pokhara',
-            'salary'=> 300,
-            // 'created_date'=> \date('Y-m-d'),
-            // 'created_time'=> \time()
-            );
-            $insert->values($newData);
-            $selectString = $sql->getSqlStringForSqlObject($insert);
 
-            $results = $adapter->query($selectString, $adapter::QUERY_MODE_EXECUTE);
+            $newData = array(
+                'name'=> 'Arjun',
+                'age'=> 25,
+                'address'=> 'Pokhara',
+                'salary'=> 300,
+                'created_date'=> date('Y-m-d'),
+                'created_time'=> date('H:i:s', time())
+            );
+            $projectTable = new TableGateway('company', $adapter);
+            $projectTable->insert($newData);
+
         } catch (Exception $e) {
             echo $e->getMesssage();
         }
